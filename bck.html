@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>Monika's Cupcake Shop</title>
+	<link rel="stylesheet" type="text/css" href="bck.css" />
+	<link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/bck'>
+	<script type="text/javascript">
+	
+	function docandle(value)
+	{
+
+			if(value == 1)
+			{
+			document.getElementById('candle').src='candle0';
+			document.forms["inputInfo"].cupcakeType.value="Red";
+			}
+			else if (value == 2)
+			{
+			document.getElementById("candle").src = "candle1";
+			document.forms["inputInfo"].cupcakeType.value="Pink";
+			}
+			else if (value == 3)
+			{
+			document.getElementById("candle").src = "candle2";
+			document.forms["inputInfo"].cupcakeType.value="Blue";
+			}
+			else if (value == 4)
+			{
+			document.getElementById("candle").src = "candle3";
+			document.forms["inputInfo"].cupcakeType.value="Green";
+			}
+			else 
+			{
+			document.getElementById("candle").src = "candle4";
+			document.forms["inputInfo"].cupcakeType.value="Orange";
+			}
+			
+		
+	}
+
+	function doVisible()
+	{
+	if (document.getElementById('checkcandle').checked)
+		{
+		document.getElementById('candle').style.visibility="visible";
+		}
+	else
+		{
+		document.getElementById('candle').style.visibility="hidden";
+		}
+	}
+	
+	
+	</script>	
+</head>
+
+<body>
+
+<div id = "header">
+	<h1><center> Monika's Cupcake Shop </center></h1>
+</div>
+
+
+
+	<img src="cupcake1.png" width="280" height="300"  alt="plain" id="plain"/>
+	<img src="candle0.png" width="40" height="170"  alt="candle" id="candle"/>
+	
+	
+
+	
+
+
+	<div id="left-conteiner">		
+		<p>Which color do you prefer?</br>
+		<input type="checkbox" id="checkcandle" onclick="doVisible()" checked="true"> Candle
+			<input type="radio" name="docandle" onclick="docandle" value="1">Red 
+			<input type="radio" name="docandle" onclick="docandle" value="2">Pink 
+			<input type="radio" name="docandle" onclick="docandle" value="3">Blue 
+			<input type="radio" name="docandle" onclick="docandle" value="4">Green
+
+		</p>
+	</div>
+		
+	
+		<div id="right-container">
+			<h2> Please fill in the form:</h2>
+				<form id="inputInfo" onsubmit="return validateinput();"  method="get" action="http://atlantis.cit.ie/displayvalues.php">
+				<table>
+					<tr>
+					<tr><td>First Name: </td><td> <input type="text" id="fName" name="First Name" required></td></tr>
+					<tr><td>Last Name: </td><td> <input type="text" id="lName" name="Last Name"></td></tr>
+					<tr><td>Date of Birth: </td><td> <input type="date" id="dob" name="DOB" required /></td></tr>
+					<tr><td>E-mail: </td><td> <input type="email" id="email" name="Email"  placeholder="example@cit.ie"required></td></tr>
+					<tr><td>Credit Card Number: </td><td> <input type="text" id="creditCard" name="Credit card number" value=""/></td></tr>
+					<tr><td>Promotion Code: </td><td> <input type="text" id="promo" name="Promo" value="" /></td></tr>
+					
+
+					<tr><td><input type="submit" class="button-diff" value="Buy Now" onclick="" /></td></tr>
+				</table>
+				</form> 
+		</div>
+
+
+
+</body>
+</html>

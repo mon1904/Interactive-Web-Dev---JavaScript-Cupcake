@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>Monika's Cupcake Shop</title>
+	<link rel="stylesheet" type="text/css" href="bck.css" />
+	<link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/bck'>
+	<script type="text/javascript">
+	
+	function doeverything()
+	{
+	price = 5;
+
+		
+		//---------Candle option-----------//
+		if (document.getElementById ("checkcandle").checked)
+		{
+			document.getElementById ("candle").style.visibility = "visible";
+			price = price + 1;
+		}
+		else
+		{
+			document.getElementById ("candle").style.visibility = "hidden";
+		}
+		
+		//---------Candle Colour-----------//
+		if(document.getElementById("radiored").checked)
+		{
+			document.getElementById('candle').src= "candle0.png";
+		}
+		
+		if(document.getElementById('radiopink').checked)
+		{
+			document.getElementById('candle').src= "candle1.png";
+		}
+		
+		if(document.getElementById('radioblue').checked)
+		{
+			document.getElementById('candle').src= "candle2.png";
+		}
+		
+		if(document.getElementById('radiogreen').checked)
+		{
+			document.getElementById('candle').src= "candle3.png";
+		}
+		
+		if(document.getElementById('radioyellow').checked)
+		{
+			document.getElementById('candle').src= "candle4.png";
+		}
+		
+		
+		//---------Cupcake flavour-----------//
+		if(document.getElementById("flavour").value == "blackberry")
+		{
+			document.getElementById('cupcake').src= "cupcake0.png";
+		}
+		
+		if(document.getElementById("flavour").value == "chocolate")
+		{
+			document.getElementById('cupcake').src= "cupcake1.png";
+		}
+		
+		if(document.getElementById("flavour").value == "vanilla")
+		{
+			document.getElementById('cupcake').src= "cupcake2.png";
+		}
+
+
+	
+		
+		//---------Sprinkles-----------//
+		if (document.getElementById ("checksprinkles").checked)
+		{
+			document.getElementById ("sprinklesImage").style.visibility = "visible";
+			price = price + 4;
+		}
+		else
+		{
+			document.getElementById ("sprinklesImage").style.visibility = "hidden";
+		}
+		
+		document.getElementById ("theprice").innerHTML = "€" + price;
+	}
+
+	function validate()
+	{
+	var result = new Boolean(true);
+	
+	
+		if (document.getElementById('fName').value=="")
+		{
+			alert("First name is missing");
+			document.getElementById('fName').style.background="yellow";
+			document.getElementById('fName').style.border="solid red 2px";
+			result = false;
+		}
+		if (document.getElementById('lName').value=="")
+		{
+			alert("Last name is missing");
+			document.getElementById('lName').style.background="yellow";
+			document.getElementById('lName').style.border="solid red 2px";
+			result = false;
+		}
+		if (creditcardgood() == false)
+		{
+			alert("Please enter a valid Credit card");
+			document.getElementById('creditcardfield').style.background="yellow";
+			document.getElementById('creditcardfield').style.border="solid red 2px";
+			document.forms["inputInfo"].creditcardfield.value="";
+			result = false;
+		}
+		
+		
+		return result;
+	}
+
+
+	function creditcardgood() 
+	{
+
+	var validCard = new Boolean(true);
+	var card = document.forms["inputInfo"].creditcardfield.value;
+	var cNumberTotal =0;
+
+	if ((card == null) || (card == ""))
+		validCard = false;
+		
+	if (card.length != 16)
+		validCard = false;
+		
+		//Check each digit. Even digits are *2 and odd ones are left alone.
+		for(i=0; i <card.length; i++)
+		{
+		number = parseInt(card.charAt(i), 10);
+		if ( i % 2 == 0)
+			{
+			digit = number * 2;
+			if(digit > 9)
+				{
+				digit = digit -9;
+				}
+			}
+			else
+				{
+				digit = number;
+				}
+		
+		cNumberTotal = cNumberTotal + digit;
+			
+		}
+		
+	if (cNumberTotal % 10 != 0)
+		validCard = false;
+		
+		return validCard;
+	}
+
+
+	
+	
+	</script>	
+</head>
+
+<body>
+
+<div id = "header">
+	<h1><center> Monika's Cupcake Shop </center></h1>
+</div>
+
+
+
+	<form id="inputInfo" onsubmit="return validate();"  method="get" action="http://atlantis.cit.ie/displayvalues.php">
+
+	<img src="cupcake0.png" width="400" height="550"  alt="cupcake" id="cupcake"/>
+	<img src="candle0.png" width="270" height="630"  alt="candle" id="candle"/>
+	<img src="sprinkles.png" width="400" height="640"  alt="sprinklesImage" id="sprinklesImage"/>
+
+
+	<div id="left-conteiner">
+		<h2> Select your preferences :</h2>
+
+		<p id="sep">
+			What flavour would you like?
+			<select onchange="doeverything()" id="flavour" name="FlavourOption">
+				<option  value="blackberry" name="FlavourOption">Blackberry</option>
+				<option  value="chocolate" 	name="FlavourOption">Chocolate</option>
+				<option  value="vanilla" 	name="FlavourOption">Vanilla</option>
+			</select></br></br>
+			Would you like a candle? <input type="checkbox" name="CandleOption" id="checkcandle" onchange="doeverything()" checked="true" > Candle </br></br>
+			
+			What colour do you prefer?</br></br>
+			<input type="radio" name="candlecolour"  onchange="doeverything()" id="radiored" value="Red">Red 
+			<input type="radio" name="candlecolour"  onchange="doeverything()" id="radiopink" value="Pink">Pink 
+			<input type="radio" name="candlecolour"  onchange="doeverything()" id="radioblue" value="Blue">Blue 
+			<input type="radio" name="candlecolour"  onchange="doeverything()" id="radiogreen" value="Green">Green
+			<input type="radio" name="candlecolour"  onchange="doeverything()" id="radioyellow" value="Yellow">Yellow</br><br/>
+			
+			Would you like sprinkles? <input type="checkbox" id="checksprinkles" onchange="doeverything()" checked="true" name="Sprinkles"> Sprinkles </br></br>
+			
+			Price: <span id="theprice">€10</span>
+		</p>
+
+	</div>
+		
+	
+		<div id="right-container">
+			<h2> Please fill in the form:</h2>
+				
+				First Name:		<input type="text" id="fName" name="First Name" ></td></tr></br>
+				Last Name:		<input type="text" id="lName" name="Last Name"></td></tr></br>
+				Date of Birth:  <input type="date" id="dob" name="DOB"  /></td></tr></br>
+				E-mail: 		<input type="email" id="email" name="Email"  placeholder="example@cit.ie"></td></tr></br>
+				Credit Card: 	<input type="text" id="creditcardfield" name ="CreditCard" value="4499228308017422" required/></td></tr></br>
+			<input type="submit" id="button-diff" value="Submit" onclick="" /></td></tr>
+				
+		</div>
+
+	</form> 
+
+
+
+</body>
+</html>
